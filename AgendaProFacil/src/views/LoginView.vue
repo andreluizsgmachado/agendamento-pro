@@ -14,10 +14,11 @@ const form = ref({
 const handleSubmit = async (event: Event) => {
   event.preventDefault();
   
-  await auth.login(form.value.email, form.value.password);
-
-  if (!auth.error) {
+  try {
+    await auth.login(form.value.email, form.value.password);
     router.push('/dashboard');
+  } catch (err) {
+    console.error('Login error:', err);
   }
 };
 </script>
@@ -25,7 +26,7 @@ const handleSubmit = async (event: Event) => {
 <template>
   <div class="login-view">
     <div class="login-card">
-      <h1 class="title">Welcome back</h1>
+      <h1 class="title">Olá, seja bem-vindo de volta!</h1>
       
       <form @submit="handleSubmit" class="login-form">
         <div class="form-group">
@@ -40,7 +41,7 @@ const handleSubmit = async (event: Event) => {
         </div>
         
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">Senha</label>
           <input
             id="password"
             v-model="form.password"
@@ -59,7 +60,7 @@ const handleSubmit = async (event: Event) => {
           class="submit-button"
           :disabled="auth.loading"
         >
-          {{ auth.loading ? 'Logging in...' : 'Log In' }}
+          {{ auth.loading ? 'Acessando...' : 'Log In' }}
         </button>
       </form>
     </div>

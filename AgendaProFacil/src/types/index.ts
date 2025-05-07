@@ -9,6 +9,26 @@ export interface AppConfig {
   environment: 'development' | 'test' | 'production';
 }
 
+export interface Appointment {
+  id: string;
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  date: string;
+  time: string;
+  service: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface AppointmentStatus {
+  id: string;
+  status: 'pending' | 'accepted' | 'rejected';
+  updatedAt: string;
+}
+
 // Placeholder for future types:
 
 // Supabase related types

@@ -86,13 +86,15 @@ const handleSubmit = async (event: Event) => {
           class="submit-button"
           :disabled="auth.loading"
         >
-          {{ auth.loading ? 'Criando a conta...' : 'Conta Criada Com Sucesso' }}
+          {{ auth.loading ? 'Criando a conta...' : 'Criar Conta' }}
         </button>
 
-        <p class="login-link">
-          Já Possui uma conta? 
-          <router-link to="/login" class="link">Entrar</router-link>
-        </p>
+        <div class="login-section">
+          <p class="login-link">
+            Já possui uma conta? 
+            <router-link to="/login" class="link">Clique aqui para entrar</router-link>
+          </p>
+        </div>
       </form>
     </div>
   </div>
@@ -186,16 +188,23 @@ input:focus {
   cursor: not-allowed;
 }
 
+.login-section {
+  margin-top: var(--spacing-6);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--color-gray-200);
+}
+
 .login-link {
   text-align: center;
-  margin-top: var(--spacing-4);
   color: var(--color-gray-600);
+  font-size: 0.95rem;
 }
 
 .link {
   color: var(--color-primary-600);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  margin-left: var(--spacing-1);
 }
 
 .link:hover {

@@ -69,11 +69,16 @@ export const useAuthStore = defineStore('auth', () => {
         throw new Error('No user data returned from authentication');
       }
 
+      if (!authData.session) {
+        throw new Error('No session data returned from authentication');
+      }
+
       user.value = authData.user;
       await fetchProfile();
     } catch (err) {
       console.error('Login error:', err);
       error.value = err instanceof Error ? err.message : 'An error occurred during login';
+      throw err; // Re-throw to handle in the component
     } finally {
       loading.value = false;
     }
